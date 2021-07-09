@@ -63,3 +63,4 @@ ios/Pods/
 
 # Bundle artifact
 *.jsbundle
+.expo

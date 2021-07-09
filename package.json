@@ -1,5 +1,6 @@
 {
   "name": "fastbuy",
+  "main": "node_modules/expo/AppEntry.js",
   "version": "1.1",
   "private": true,
   "scripts": {
@@ -12,27 +13,39 @@
     ]
   },
   "dependencies": {
+    "@react-navigation/native": "^5.9.4",
+    "expo": "^42.0.1",
+    "expo-auth-session": "^3.3.1",
+    "expo-constants": "~11.0.1",
+    "expo-localization": "^10.2.0",
+    "expo-random": "^11.2.0",
+    "expo-web-browser": "^9.2.0",
+    "firebase": "8.2.3",
     "i18n-js": "^3.1.0",
     "md5": "^2.2.1",
-    "react": "16.6.0-alpha.8af6728",
-    "react-native": "0.57.4",
-    "react-native-camera-kit": "^6.3.0",
-    "react-native-device-info": "^0.24.3",
+    "react": "17.0.2",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
+    "react-native-camera-kit": "^11.2.1",
+    "react-native-device-info": "^8.1.3",
     "react-native-firebase": "^5.0.0",
-    "react-native-google-signin": "^1.0.0-rc8",
+    "react-native-gesture-handler": "^1.10.3",
+    "react-native-google-signin": "^2.1.1",
     "react-native-languages": "^3.0.1",
     "react-native-masked-text": "^1.9.2",
-    "react-native-router-flux": "^4.0.5",
-    "react-redux": "^5.1.0",
+    "react-native-reanimated": "^2.2.0",
+    "react-native-router-flux": "^4.3.1",
+    "react-native-screens": "^3.4.0",
+    "react-navigation": "^4.4.4",
+    "react-redux": "^7.2.4",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "babel-jest": "23.6.0",
+    "babel-jest": "27.0.6",
     "eslint-config-rallycoding": "^3.2.0",
-    "jest": "23.6.0",
-    "metro-react-native-babel-preset": "0.49.0",
-    "react-test-renderer": "16.6.0-alpha.8af6728"
+    "jest": "27.0.6",
+    "metro-react-native-babel-preset": "0.66.1",
+    "react-test-renderer": "17.0.2"
   },
   "jest": {
     "preset": "react-native"

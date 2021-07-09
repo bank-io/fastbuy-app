@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import { Button, ImageButton, InputMoney, InputText, KeyboardView } from '../components';
 import { Dimensions, ImageBackground, ScrollView, StyleSheet, View } from 'react-native';
-import { connect } from 'react-redux';
+import React, { Component } from 'react';
 import { addPhoto, productClean, productDelete, productSave, productUpdate } from '../actions';
-import { Button, KeyboardView, ImageButton, InputMoney, InputText } from '../components';
+
 import colors from '../colors';
+import { connect } from 'react-redux';
 import i18n from '../i18n';
 import imgAppAddPhoto from '../../assets/images/app-add-photo.png';
 import imgPlaceholder from '../../assets/images/image-placeholder.png';
 
 type Props = {};
 class ProductScreen extends Component<Props> {
-
   componentWillMount() {
     this.props.productClean();
 
@@ -46,40 +46,18 @@ class ProductScreen extends Component<Props> {
 
   renderDelete() {
     return (
-      <Button
-        backgroundColor={colors.transparent}
-        textColor={colors.purple}
-        title={i18n.t('product.form.delete')}
-        onPress={this.onPressDelete.bind(this)}
-      />
+      <Button backgroundColor={colors.transparent} textColor={colors.purple} title={i18n.t('product.form.delete')} onPress={this.onPressDelete.bind(this)} />
     );
   }
 
   render() {
-    const {
-      containerStyle,
-      backgroundImageStyle,
-      imageButtonStyle,
-      formStyle,
-      subFormStyle,
-      inputStyle,
-      spaceViewStyle
-    } = styles;
+    const { containerStyle, backgroundImageStyle, imageButtonStyle, formStyle, subFormStyle, inputStyle, spaceViewStyle } = styles;
 
     return (
       <KeyboardView style={containerStyle}>
         <ScrollView keyboardShouldPersistTaps={'handled'}>
-          <ImageBackground
-            style={backgroundImageStyle}
-            source={this.props.imageUrl ? { uri: this.props.imageUrl } : null}
-            defaultSource={imgPlaceholder}
-          >
-            <ImageButton
-              style={imageButtonStyle}
-              size={60}
-              source={imgAppAddPhoto}
-              onPress={() => this.props.addPhoto()}
-            />
+          <ImageBackground style={backgroundImageStyle} source={this.props.imageUrl ? { uri: this.props.imageUrl } : null} defaultSource={imgPlaceholder}>
+            <ImageButton style={imageButtonStyle} size={60} source={imgAppAddPhoto} onPress={() => this.props.addPhoto()} />
           </ImageBackground>
 
           <View style={formStyle}>
@@ -87,14 +65,14 @@ class ProductScreen extends Component<Props> {
               style={inputStyle}
               title={i18n.t('product.form.product_name')}
               value={this.props.name}
-              onChangeText={value => this.props.productUpdate({ prop: 'name', value })}
+              onChangeText={(value) => this.props.productUpdate({ prop: 'name', value })}
             />
 
             <InputMoney
               style={inputStyle}
               title={i18n.t('product.form.price')}
               value={this.props.price}
-              onChangeText={value => this.props.productUpdate({ prop: 'price', value })}
+              onChangeText={(value) => this.props.productUpdate({ prop: 'price', value })}
             />
 
             <View style={subFormStyle}>
@@ -102,7 +80,7 @@ class ProductScreen extends Component<Props> {
                 style={inputStyle}
                 title={i18n.t('product.form.color')}
                 value={this.props.color}
-                onChangeText={value => this.props.productUpdate({ prop: 'color', value })}
+                onChangeText={(value) => this.props.productUpdate({ prop: 'color', value })}
               />
 
               <View style={spaceViewStyle} />
@@ -111,7 +89,7 @@ class ProductScreen extends Component<Props> {
                 style={inputStyle}
                 title={i18n.t('product.form.size')}
                 value={this.props.size}
-                onChangeText={text => this.props.productUpdate({ prop: 'size', value: text })}
+                onChangeText={(text) => this.props.productUpdate({ prop: 'size', value: text })}
               />
             </View>
 
@@ -129,25 +107,24 @@ class ProductScreen extends Component<Props> {
       </KeyboardView>
     );
   }
-
 }
 
 const margin = 14;
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   containerStyle: {
-    flex: 1
+    flex: 1,
   },
 
   backgroundImageStyle: {
     backgroundColor: colors.grayUltraLight,
-    height: width,
-    width
+    height: width < height ? width : 100,
+    width,
   },
   imageButtonStyle: {
     position: 'absolute',
     bottom: 10,
-    right: 10
+    right: 10,
   },
 
   formStyle: {
@@ -155,14 +132,14 @@ const styles = StyleSheet.create({
   },
   subFormStyle: {
     flexDirection: 'row',
-    marginBottom: margin
+    marginBottom: margin,
   },
   inputStyle: {
     flex: 1,
   },
   spaceViewStyle: {
-    margin: margin / 2
-  }
+    margin: margin / 2,
+  },
 });
 
 const mapStateToProps = (state) => {
@@ -171,5 +148,9 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  addPhoto, productClean, productDelete, productSave, productUpdate
+  addPhoto,
+  productClean,
+  productDelete,
+  productSave,
+  productUpdate,
 })(ProductScreen);

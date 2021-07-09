@@ -1,10 +1,11 @@
+import { Animated, Image, StyleSheet, Text, View } from 'react-native';
 import React, { Component } from 'react';
-import { Animated, StyleSheet, Image, Text, View } from 'react-native';
-import { connect } from 'react-redux';
 import { configure, tryToSignInSilently } from '../actions';
-import i18n from '../i18n';
+
 import colors from '../colors';
+import { connect } from 'react-redux';
 import fonts from '../fonts';
+import i18n from '../i18n';
 import imgAppIcon from '../../assets/images/app-icon.png';
 
 const PULSE = 0.1;
@@ -12,10 +13,9 @@ const DURATION = 500;
 
 type Props = {};
 class LaunchScreen extends Component<Props> {
-
   state = {
-    animated: new Animated.Value(1 - PULSE)
-  }
+    animated: new Animated.Value(1 - PULSE),
+  };
 
   componentWillMount() {
     this.props.configure();
@@ -30,7 +30,9 @@ class LaunchScreen extends Component<Props> {
     const { animated } = this.state;
 
     Animated.timing(animated, {
-      toValue: 1 + PULSE, duration: DURATION,
+      toValue: 1 + PULSE,
+      duration: DURATION,
+      useNativeDriver: true,
     }).start(() => this.fadeOut());
   }
 
@@ -38,19 +40,16 @@ class LaunchScreen extends Component<Props> {
     const { animated } = this.state;
 
     Animated.timing(animated, {
-      toValue: 1 - PULSE, duration: DURATION
+      toValue: 1 - PULSE,
+      duration: DURATION,
+      useNativeDriver: true,
     }).start(() => this.fadeIn());
   }
 
   render() {
     const { animated } = this.state;
 
-    const {
-      containerStyle,
-      welcomeViewStyle,
-      imageStyle,
-      titleStyle
-    } = styles;
+    const { containerStyle, welcomeViewStyle, imageStyle, titleStyle } = styles;
 
     return (
       <View style={containerStyle}>
@@ -64,7 +63,6 @@ class LaunchScreen extends Component<Props> {
       </View>
     );
   }
-
 }
 
 const margin = 14;
@@ -73,24 +71,24 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: colors.white,
-    margin
+    margin,
   },
   welcomeViewStyle: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   imageStyle: {
     height: 100,
     width: 100,
-    margin
+    margin,
   },
   titleStyle: {
     fontFamily: fonts.regular,
     color: colors.grayDark,
     fontSize: 24,
-    margin
-  }
+    margin,
+  },
 });
 
 export default connect(null, { configure, tryToSignInSilently })(LaunchScreen);

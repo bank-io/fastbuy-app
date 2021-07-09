@@ -1,4 +1,6 @@
 {
-  "name": "fastbuy",
-  "displayName": "FastBuy"
+  "expo": {
+    "slug": "fastbuy",
+    "name": "FastBuy"
+  }
 }

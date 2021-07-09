@@ -1,7 +1,7 @@
 const fonts = {
-  light: 'Exo-Light',
-  regular: 'Exo-Regular',
-  bold: 'Exo-Bold'
+  light: 'Arial',
+  regular: 'Arial',
+  bold: 'Arial',
 };
 
 export default fonts;
